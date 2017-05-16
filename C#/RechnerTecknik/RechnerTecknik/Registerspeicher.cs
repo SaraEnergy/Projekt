@@ -128,34 +128,34 @@ namespace RechnerTecknik
             }
         }
 
-        private static void SwitchBanks(byte address, byte value)
-        {
-            //Prüfen ob geswitched werden muss
-            switch (address)
-            {
-                // Bank0 addressiert: auf Bank1 uebertragen
-                case PCL:
-                case STATUS:
-                case FSR:
-                case PCLATH:
-                case INTCON:
-                    speicher[address + 0x80] = value;
-                    labels[address + 0x80].Content = value.ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
-                    break;
-                // Bank1 addressiert: auf Bank0 uebertragen
-                case PCL + 0x80:
-                case STATUS + 0x80:
-                case FSR + 0x80:
-                case PCLATH + 0x80:
-                case INTCON + 0x80:
-                    speicher[address - 0x80] = value;
-                    labels[address - 0x80].Content = value.ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
-                    break;
-                // default
-                default:
-                    break;
-            }
-        }
+        //private static void SwitchBanks(byte address, byte value)
+        //{
+        //    //Prüfen ob geswitched werden muss
+        //    switch (address)
+        //    {
+        //        // Bank0 addressiert: auf Bank1 uebertragen
+        //        case PCL:
+        //        case STATUS:
+        //        case FSR:
+        //        case PCLATH:
+        //        case INTCON:
+        //            speicher[address + 0x80] = value;
+        //            labels[address + 0x80].Content = value.ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
+        //            break;
+        //        // Bank1 addressiert: auf Bank0 uebertragen
+        //        case PCL + 0x80:
+        //        case STATUS + 0x80:
+        //        case FSR + 0x80:
+        //        case PCLATH + 0x80:
+        //        case INTCON + 0x80:
+        //            speicher[address - 0x80] = value;
+        //            labels[address - 0x80].Content = value.ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
+        //            break;
+        //        // default
+        //        default:
+        //            break;
+        //    }
+        //}
 
         public static void setRegisterWert(byte address, byte value)
         {

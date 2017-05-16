@@ -12,3 +12,17 @@ C:\Users\Sara\Desktop\Studium\Rechnerarchitekturen\Projekt\C#\RechnerTecknik\Rec
 C:\Users\Sara\Desktop\Studium\Rechnerarchitekturen\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Debug\RechnerTecknik.csproj.GenerateResource.Cache
 C:\Users\Sara\Desktop\Studium\Rechnerarchitekturen\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Debug\RechnerTecknik.exe
 C:\Users\Sara\Desktop\Studium\Rechnerarchitekturen\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Debug\RechnerTecknik.pdb
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\bin\Debug\RechnerTecknik.exe.config
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Debug\RechnerTecknik.exe
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Debug\RechnerTecknik.pdb
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\bin\Debug\RechnerTecknik.exe
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\bin\Debug\RechnerTecknik.pdb
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Debug\RechnerTecknik.csprojResolveAssemblyReference.cache
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Debug\MainWindow.g.cs
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Debug\App.g.cs
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Debug\RechnerTecknik_MarkupCompile.cache
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Debug\RechnerTecknik_MarkupCompile.lref
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Debug\MainWindow.baml
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Debug\RechnerTecknik.g.resources
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Debug\RechnerTecknik.Properties.Resources.resources
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Debug\RechnerTecknik.csproj.GenerateResource.Cache

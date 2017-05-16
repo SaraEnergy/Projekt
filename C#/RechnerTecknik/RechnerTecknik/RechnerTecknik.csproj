@@ -58,6 +58,7 @@
     <Compile Include="Commands.cs" />
     <Compile Include="Registerspeicher.cs" />
     <Compile Include="Stack.cs" />
+    <Compile Include="TIMER0.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

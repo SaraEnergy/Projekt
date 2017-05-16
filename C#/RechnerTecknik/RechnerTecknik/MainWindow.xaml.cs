@@ -132,6 +132,7 @@ namespace RechnerTecknik
             }
             ExecutingCommandTextBlock.Text = this.myCommand;
             commandCounter++;
+            TIMER0.checkTimer0();
             ExecuteCommand(this.myCommand); 
         }
 
