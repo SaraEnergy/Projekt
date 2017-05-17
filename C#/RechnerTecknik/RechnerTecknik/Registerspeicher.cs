@@ -38,6 +38,11 @@ namespace RechnerTecknik
 
         public static void initializeRegister()
         {
+            for (int i = 0; i < 256; i++)
+            {
+                speicher[i] = 0x00;  // Überall wird null hingeschrieben;
+                labels[i].Content = speicher[i].ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
+            }
             setRegisterWert(STATUS, 0x18);
             setRegisterWert(0x81, 0xFF); //Option_REG
             setRegisterWert(0x85, 0xFF); //TrisA
@@ -159,12 +164,21 @@ namespace RechnerTecknik
 
         public static void setRegisterWert(byte address, byte value)
         {
-            CheckBanks(address, value);
-            speicher[address] = value;
-            labels[address].Content = value.ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
+            //CheckBanks(address, value);
+            WriteToBank(address, value);
             CopyBanks();
             //SwitchBanks(address, value);
         }
+
+        public static void setRegisterBCF(byte address, byte value)
+        {
+            speicher[address + 0x80] = value;
+            labels[address + 0x80].Content = value.ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
+ 
+            speicher[address] = value;
+            labels[address].Content = value.ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
+        }
+
 
         private static void CopyBanks()
         {
@@ -189,13 +203,18 @@ namespace RechnerTecknik
             }
         }
 
-        private static void CheckBanks(byte address, byte value)
+        private static void WriteToBank(byte address, byte value)
         {
             byte InhaltStatus = getRegisterWert(STATUS);
-            if ((InhaltStatus & 0x20) == 0x20) //Wenn im Statusregister das 5.Bit gesetzt ist
+            if ((InhaltStatus & 0x20) == 0x20) //Wenn im Statusregister das 5.Bit gesetzt ist, schreibe in Bank 1
             {
                 speicher[address + 0x80] = value;
                 labels[address + 0x80].Content = value.ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
+            }
+            else //schreibe in Bank 0
+            {
+                speicher[address] = value;
+                labels[address].Content = value.ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
             }
         }
 

@@ -10,7 +10,14 @@ namespace RechnerTecknik
     class TIMER0
     {
         static int TimerValue;
-   
+
+        private static int timerCounter = 0;
+        public static int TimerCounter
+        {
+            get { return timerCounter; }
+            set { timerCounter = value; checkTimer0(); }
+        }
+
         public static void checkTimer0()
         {
             byte InhaltOptionRegister = Registerspeicher.getRegisterWert(0x81);
@@ -60,25 +67,25 @@ namespace RechnerTecknik
                 {
                     //TMR0 Rate = 1:2
                     TimerValue = 2;
-                    CheckProgrammCounter();
+                    SetTimer0();
                 }
                 else if ((InhaltOptionRegister & 0x07) == 0x01)
                 {
                     //TMR0 Rate = 1:4
                     TimerValue = 4;
-                    CheckProgrammCounter();
+                    SetTimer0();
                 }
                 else if ((InhaltOptionRegister & 0x07) == 0x02)
                 {
                     //TMR0 Rate = 1:8
                     TimerValue = 8;
-                    CheckProgrammCounter();
+                    SetTimer0();
                 }
                 else if ((InhaltOptionRegister & 0x07) == 0x03)
                 {
                     //TMR0 Rate = 1:16
                     TimerValue = 16;
-                    CheckProgrammCounter();
+                    SetTimer0();
                 }
                 else if ((InhaltOptionRegister & 0x07) == 0x04)
                 {
@@ -89,19 +96,19 @@ namespace RechnerTecknik
                 {
                     //TMR0 Rate = 1:64
                     TimerValue = 64;
-                    CheckProgrammCounter();
+                    SetTimer0();
                 }
                 else if ((InhaltOptionRegister & 0x07) == 0x06)
                 {
                     //TMR0 Rate = 1:128
                     TimerValue = 128;
-                    CheckProgrammCounter();
+                    SetTimer0();
                 }
                 else if ((InhaltOptionRegister & 0x07) == 0x07)
                 {
                     //TMR0 Rate = 1:256
                     TimerValue = 256;
-                    CheckProgrammCounter();
+                    SetTimer0();
                 }
                 else
                 {
@@ -114,13 +121,14 @@ namespace RechnerTecknik
             }
         }
 
-        static void CheckProgrammCounter()
+        static void SetTimer0()
         {
-            if ((MainWindow.CommandCounter % TimerValue) == 0)
+            if (timerCounter == TimerValue)
             {
                 byte tempTMRO = Registerspeicher.getRegisterWert(Registerspeicher.TMR0);
                 tempTMRO++;
                 Registerspeicher.setRegisterWert(Registerspeicher.TMR0, tempTMRO);
+                timerCounter = 0;
             }
         }
 

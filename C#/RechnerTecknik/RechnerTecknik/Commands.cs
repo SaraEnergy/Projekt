@@ -697,7 +697,7 @@ namespace RechnerTecknik
             {
                 MessageBox.Show("Problem BCF - b is not defined");
             }
-            Registerspeicher.setRegisterWert(fAsByte, result);
+            Registerspeicher.setRegisterBCF(fAsByte, result);
         }
 
         public static void BSF(string commandAsString)

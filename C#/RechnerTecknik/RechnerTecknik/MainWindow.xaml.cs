@@ -110,8 +110,12 @@ namespace RechnerTecknik
                     MessageBox.Show("Command not found");
                 }
                 ExecutingCommandTextBlock.Text = this.myCommand;
+
                 commandCounter++;
+                TIMER0.TimerCounter++; //externe Variable für TIMER0 wird hochgezählt
+
                 ExecuteCommand(this.myCommand);
+                CommandCounterLabel.Content = commandCounter; //Commandcounter wird ausgegeben
             }
             else
             {
@@ -131,9 +135,12 @@ namespace RechnerTecknik
                 MessageBox.Show("End of Commands");
             }
             ExecutingCommandTextBlock.Text = this.myCommand;
+
             commandCounter++;
-            TIMER0.checkTimer0();
-            ExecuteCommand(this.myCommand); 
+            TIMER0.TimerCounter++; //externe Variable für TIMER0 wird hochgezählt
+
+            ExecuteCommand(this.myCommand);
+            CommandCounterLabel.Content = commandCounter; //Commandcounter wird ausgegeben
         }
 
 
@@ -150,7 +157,36 @@ namespace RechnerTecknik
         {
             Registerspeicher.initializeRegister();
             commandCounter = 0;
+
             ExecutingCommandTextBlock.Text = "start over again";
+            CommandNameLabel.Content = "reseted";
+            CommandCounterLabel.Content = commandCounter;
+
+            Registerspeicher.W = 0;
+            TIMER0.TimerCounter = 0; //reset, auf null gesetzt
+
+        }
+
+        private void GoButton_Click(object sender, RoutedEventArgs e)
+        {
+            int BreakPosition = Convert.ToInt32(GoTextBox.Text);
+            while (commandCounter <= BreakPosition)
+            {
+                    try
+                    {
+                        this.myCommand = myCommandList.ElementAt(commandCounter);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("End of Commands");
+                    }
+                    ExecutingCommandTextBlock.Text = this.myCommand;
+                    commandCounter++;
+                    TIMER0.TimerCounter++; //externe Variable für TIMER0 wird hochgezählt
+
+                    ExecuteCommand(this.myCommand);
+                    CommandCounterLabel.Content = commandCounter;
+            }
         }
     }
 }

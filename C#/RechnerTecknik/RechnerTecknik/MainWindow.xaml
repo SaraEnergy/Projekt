@@ -30,7 +30,7 @@
         <TextBox x:Name="browseBox" HorizontalAlignment="Left" Height="23" Margin="337,47,0,0" TextWrapping="Wrap" Text="Browse..." VerticalAlignment="Top" Width="218" FontSize="16"/>
         <Button x:Name="browseButton" Content="Browse" HorizontalAlignment="Left" Margin="555,47,0,0" VerticalAlignment="Top" Width="80" Height="23" Click="browseButton_Click" FontSize="16"/>
         <FlowDocumentReader x:Name="flowDocReader" HorizontalAlignment="Left" Margin="337,75,0,0" VerticalAlignment="Top" Width="589" Height="451" IsTwoPageViewEnabled="False" IsPrintEnabled="False" IsFindEnabled="True" IsScrollViewEnabled="True"/>
-        <TextBlock x:Name="ExecutingCommandTextBlock" HorizontalAlignment="Left" Margin="555,578,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="27" Width="131" FontSize="18.667" FontWeight="Bold" Foreground="Red"/>
+        <TextBlock x:Name="ExecutingCommandTextBlock" HorizontalAlignment="Left" Margin="550,573,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="27" Width="131" FontSize="18.667" FontWeight="Bold" Foreground="Red"/>
         <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="380,545,0,0" VerticalAlignment="Top" Width="82" Click="StartButton_Click" Height="23" FontSize="16"/>
         <Button x:Name="nextButton" Content="Next" HorizontalAlignment="Left" Margin="478,545,0,0" VerticalAlignment="Top" Width="77" Click="NextButton_Click" Height="23" FontSize="16"/>
         <Label x:Name="label" Content="Executing command:" HorizontalAlignment="Left" Margin="380,573,0,0" VerticalAlignment="Top" Width="175" FontSize="16"/>
@@ -89,7 +89,11 @@
         <Label x:Name="CLabel" Content="0" HorizontalAlignment="Left" Margin="635,703,0,0" VerticalAlignment="Top" Width="31" FontSize="16" x:FieldModifier="public" Foreground="#FF000CFF"/>
         <Label x:Name="DClabel" Content="DigitCarrFlag" HorizontalAlignment="Left" Margin="478,677,0,0" VerticalAlignment="Top" Width="104" FontSize="16"/>
         <Label x:Name="DCLabel" Content="0" HorizontalAlignment="Left" Margin="517,703,0,0" VerticalAlignment="Top" Width="30" FontSize="16" x:FieldModifier="public" Foreground="#FF000CFF"/>
-        <Label x:Name="CommandNameLabel" Content="" HorizontalAlignment="Left" Margin="686,573,0,0" VerticalAlignment="Top" Width="129" Height="30"/>
+        <Label x:Name="CommandNameLabel" Content="" HorizontalAlignment="Left" Margin="618,575,0,0" VerticalAlignment="Top" Width="92" Height="30" Foreground="#FFFF0202"/>
+        <Button x:Name="GoButton" Content="GO" HorizontalAlignment="Left" Margin="851,545,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="GoButton_Click"/>
+        <TextBox x:Name="GoTextBox" HorizontalAlignment="Left" Height="23" Margin="851,573,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="CounterLabel" Content="CommandCounter" HorizontalAlignment="Left" Margin="380,610,0,0" VerticalAlignment="Top" Width="150" FontSize="16"/>
+        <Label x:Name="CommandCounterLabel" Content="" HorizontalAlignment="Left" Margin="544,610,0,0" VerticalAlignment="Top" Height="30" Width="55" FontSize="16" Foreground="#FF00FF03"/>
 
     </Grid>
 </Window>
