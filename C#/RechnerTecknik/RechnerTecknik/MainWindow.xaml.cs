@@ -25,6 +25,7 @@ namespace RechnerTecknik
         string myCommand =string.Empty; //Variable für einzelne Commands
 
         public static int numberOfCycles = 0; //Variable für ein 1 oder 2 Cycle Befeht
+        public static float laufzeit = 0; //Variable für Laufzeitberechnung
 
         private static int commandCounter = 0; //ProgrammCounter
         public static int CommandCounter
@@ -191,19 +192,28 @@ namespace RechnerTecknik
                     CommandCounterLabel.Content = commandCounter;
                 if (numberOfCycles == 2)
                 {
-                    await Task.Delay(getFrequenz());
+                    await Task.Delay(GetFrequenz());
                 }
-                await Task.Delay(getFrequenz());
+                await Task.Delay(GetFrequenz());
             }
         }
 
-        private int getFrequenz()
+        private int GetFrequenz()
         {
             float QuarzFrequenz = float.Parse(freqBox.Text); //Quarzfrequenz auslesen
             float MicroSekunden = 4 * (1 / QuarzFrequenz); //Berechnen der Microsekunden
             float MilliSekunden = MicroSekunden / 1000; //Umrechnen in Millisekunden
             int MilliSekundenGerundet = Convert.ToInt32(MilliSekunden); //Rückgabewert muss int sein
+
+            UpdateLaufzeit(MicroSekunden);
+
             return MilliSekundenGerundet;
+        }
+
+        private void UpdateLaufzeit(float microSekunden)
+        {
+            laufzeit = laufzeit + microSekunden;
+            laufzBox.Text = Convert.ToString(laufzeit);
         }
     }
 }

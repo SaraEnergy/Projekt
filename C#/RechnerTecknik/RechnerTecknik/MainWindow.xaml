@@ -13,7 +13,7 @@
         <Label x:Name="freqLabel" Content="Quarzfrequenz:" HorizontalAlignment="Left" Margin="1040,75,0,0" VerticalAlignment="Top" Width="97" FontSize="13.333"/>
         <Label x:Name="mhzLabel" Content="MHz" HorizontalAlignment="Left" Margin="1137,101,0,0" VerticalAlignment="Top" Width="36" FontSize="13.333"/>
         <Label x:Name="laufzLabel" Content="Lauzeit:" HorizontalAlignment="Left" Margin="1040,138,0,0" VerticalAlignment="Top" Width="92" FontSize="13.333"/>
-        <TextBox x:Name="laufzBox" HorizontalAlignment="Left" Height="23" Margin="1040,164,0,0" TextWrapping="Wrap" Text="dynLaufzeit" VerticalAlignment="Top" Width="92" FontSize="13.333"/>
+        <TextBox x:Name="laufzBox" HorizontalAlignment="Left" Height="23" Margin="1040,164,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="92" FontSize="13.333"/>
         <TextBox x:Name="stackBox" HorizontalAlignment="Left" Height="273" Margin="937,385,0,0" TextWrapping="Wrap" Text="Stack" VerticalAlignment="Top" Width="195"/>
         <Label x:Name="stackLabel" Content="Stackfunktion" HorizontalAlignment="Left" Margin="937,354,0,0" VerticalAlignment="Top" Width="107"/>
         <StackPanel HorizontalAlignment="Left" Height="38" Margin="799,58,0,0" VerticalAlignment="Top" Width="231" Orientation="Horizontal">
@@ -94,6 +94,7 @@
         <TextBox x:Name="GoTextBox" HorizontalAlignment="Left" Height="23" Margin="851,573,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="75"/>
         <Label x:Name="CounterLabel" Content="CommandCounter" HorizontalAlignment="Left" Margin="380,610,0,0" VerticalAlignment="Top" Width="150" FontSize="16"/>
         <Label x:Name="CommandCounterLabel" Content="" HorizontalAlignment="Left" Margin="544,610,0,0" VerticalAlignment="Top" Height="30" Width="55" FontSize="16" Foreground="#FF00FF03"/>
+        <Label x:Name="labelLaufzeitEinheit" Content="μs" HorizontalAlignment="Left" Margin="1137,164,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
