@@ -9,7 +9,7 @@
     <Grid>
 
         <Button x:Name="helpButton" Content="Help" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92" Margin="1040,37,0,0" Click="helpButton_Click" FontSize="13.333"/>
-        <TextBox x:Name="freqBox" HorizontalAlignment="Left" Height="23" Margin="1040,101,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="92" RenderTransformOrigin="0.495,0.457" FontSize="13.333"/>
+        <TextBox x:Name="freqBox" HorizontalAlignment="Left" Height="23" Margin="1040,101,0,0" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Width="92" RenderTransformOrigin="0.495,0.457" FontSize="13.333"/>
         <Label x:Name="freqLabel" Content="Quarzfrequenz:" HorizontalAlignment="Left" Margin="1040,75,0,0" VerticalAlignment="Top" Width="97" FontSize="13.333"/>
         <Label x:Name="mhzLabel" Content="MHz" HorizontalAlignment="Left" Margin="1137,101,0,0" VerticalAlignment="Top" Width="36" FontSize="13.333"/>
         <Label x:Name="laufzLabel" Content="Lauzeit:" HorizontalAlignment="Left" Margin="1040,138,0,0" VerticalAlignment="Top" Width="92" FontSize="13.333"/>

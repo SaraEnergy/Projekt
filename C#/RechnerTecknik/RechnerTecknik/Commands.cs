@@ -78,23 +78,26 @@ namespace RechnerTecknik
 
             int addressToGo = Convert.ToInt32(myLiteralbinary, 2); //Binäradresse wird als Int gespeichert
             MainWindow.CommandCounter = addressToGo;
+            MainWindow.numberOfCycles = 2;
         }
 
         public static void CALL(string commandAsString)
         {
             Stack.myStack.Push(MainWindow.CommandCounter); // und in Stack für Rücksprungadresse gespeichert
-
+            mainWin.stackBox.Text = MainWindow.CommandCounter.ToString("X2");
             int myLiteralAsNum = Convert.ToInt32(commandAsString, 16); // string zu int konvertieren
             string binary = Convert.ToString(myLiteralAsNum, 2); // int zu Binärstring konvertieren
             string myLiteralbinary = binary.Substring(3, 11); //Argument, Adresse auslesen
 
             int addressToGo = Convert.ToInt32(myLiteralbinary, 2); //Binäradresse wird als Int gespeichert
             MainWindow.CommandCounter = addressToGo;
+            MainWindow.numberOfCycles = 2;
         }
 
         public static void RETURN()
         {
-            MainWindow.CommandCounter = Stack.myStack.Peek();
+            MainWindow.CommandCounter = Stack.myStack.Peek(); //Adresse wird vom Stack geholt
+            MainWindow.numberOfCycles = 2;
         }
 
         public static void NOP()
@@ -106,6 +109,7 @@ namespace RechnerTecknik
         {
             MOVLW(commandAsString);
             RETURN();
+            MainWindow.numberOfCycles = 2;
         }
 
         public static void MOVWF(string commandAsString)
@@ -589,6 +593,7 @@ namespace RechnerTecknik
             {
                 Commands.NOP();
                 MainWindow.CommandCounter++;
+                MainWindow.numberOfCycles = 2;
             }
             else
             {
@@ -626,6 +631,7 @@ namespace RechnerTecknik
             {
                 Commands.NOP();
                 MainWindow.CommandCounter++;
+                MainWindow.numberOfCycles = 2;
             }
             else
             {
@@ -778,6 +784,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x01) == 0x00)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else if (bAsInt == 1)
@@ -785,6 +792,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x02) == 0x00)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else if (bAsInt == 2)
@@ -792,6 +800,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x04) == 0x00)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else if (bAsInt == 3)
@@ -799,6 +808,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x08) == 0x00)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else if (bAsInt == 4)
@@ -806,6 +816,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x10) == 0x00)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else if (bAsInt == 5)
@@ -813,6 +824,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x20) == 0x00)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else if (bAsInt == 6)
@@ -820,6 +832,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x40) == 0x00)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else if (bAsInt == 7)
@@ -827,6 +840,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x80) == 0x00)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else
@@ -858,6 +872,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x01) == 0x01)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else if (bAsInt == 1)
@@ -865,6 +880,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x02) == 0x02)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else if (bAsInt == 2)
@@ -872,6 +888,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x04) == 0x04)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else if (bAsInt == 3)
@@ -879,6 +896,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x08) == 0x08)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else if (bAsInt == 4)
@@ -886,6 +904,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x10) == 0x10)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else if (bAsInt == 5)
@@ -893,6 +912,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x20) == 0x20)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else if (bAsInt == 6)
@@ -900,6 +920,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x40) == 0x40)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else if (bAsInt == 7)
@@ -907,6 +928,7 @@ namespace RechnerTecknik
                 if ((fWert & 0x80) == 0x80)
                 {
                     MainWindow.CommandCounter++;
+                    MainWindow.numberOfCycles = 2;
                 }
             }
             else

@@ -21,10 +21,12 @@ namespace RechnerTecknik
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<string> myCommandList = new List<string>();
-        string myCommand =string.Empty;
+        List<string> myCommandList = new List<string>(); //CommandListe alle Commands
+        string myCommand =string.Empty; //Variable für einzelne Commands
 
-        private static int commandCounter = 0;
+        public static int numberOfCycles = 0; //Variable für ein 1 oder 2 Cycle Befeht
+
+        private static int commandCounter = 0; //ProgrammCounter
         public static int CommandCounter
         {
           get {return commandCounter;}
@@ -53,7 +55,7 @@ namespace RechnerTecknik
 
         private void helpButton_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(@"C:\Users\Sara\Desktop\Studium\Rechnerarchitekturen\Projekt\C#\Documentation.pdf");
+            System.Diagnostics.Process.Start(@"C:\Users\Sara\Projekt\C#\Documentation.pdf");
         }
 
 
@@ -167,11 +169,12 @@ namespace RechnerTecknik
 
         }
 
-        private void GoButton_Click(object sender, RoutedEventArgs e)
+        private async void GoButton_Click(object sender, RoutedEventArgs e)
         {
             int BreakPosition = Convert.ToInt32(GoTextBox.Text);
             while (commandCounter <= BreakPosition)
             {
+                numberOfCycles = 1;
                     try
                     {
                         this.myCommand = myCommandList.ElementAt(commandCounter);
@@ -186,7 +189,21 @@ namespace RechnerTecknik
 
                     ExecuteCommand(this.myCommand);
                     CommandCounterLabel.Content = commandCounter;
+                if (numberOfCycles == 2)
+                {
+                    await Task.Delay(getFrequenz());
+                }
+                await Task.Delay(getFrequenz());
             }
+        }
+
+        private int getFrequenz()
+        {
+            float QuarzFrequenz = float.Parse(freqBox.Text); //Quarzfrequenz auslesen
+            float MicroSekunden = 4 * (1 / QuarzFrequenz); //Berechnen der Microsekunden
+            float MilliSekunden = MicroSekunden / 1000; //Umrechnen in Millisekunden
+            int MilliSekundenGerundet = Convert.ToInt32(MilliSekunden); //Rückgabewert muss int sein
+            return MilliSekundenGerundet;
         }
     }
 }
