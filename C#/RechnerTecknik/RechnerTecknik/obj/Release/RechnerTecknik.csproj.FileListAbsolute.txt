@@ -1,0 +1,14 @@
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\bin\Release\RechnerTecknik.exe.config
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\bin\Release\RechnerTecknik.exe
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\bin\Release\RechnerTecknik.pdb
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Release\RechnerTecknik.csprojResolveAssemblyReference.cache
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Release\MainWindow.g.cs
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Release\App.g.cs
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Release\RechnerTecknik_MarkupCompile.cache
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Release\RechnerTecknik_MarkupCompile.lref
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Release\MainWindow.baml
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Release\RechnerTecknik.g.resources
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Release\RechnerTecknik.Properties.Resources.resources
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Release\RechnerTecknik.csproj.GenerateResource.Cache
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Release\RechnerTecknik.exe
+C:\Users\Sara\Projekt\C#\RechnerTecknik\RechnerTecknik\obj\Release\RechnerTecknik.pdb

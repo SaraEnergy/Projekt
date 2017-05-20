@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -79,7 +80,7 @@ namespace RechnerTecknik
             {
                 // Open document 
                 string filename = dialog.FileName;
-                browseBox.Text = filename;
+                browseBox.Text = dialog.SafeFileName;
 
                 Paragraph paragraph = new Paragraph();
                 paragraph.Inlines.Add(System.IO.File.ReadAllText(filename));
@@ -170,32 +171,40 @@ namespace RechnerTecknik
 
         }
 
-        private async void GoButton_Click(object sender, RoutedEventArgs e)
+        private void GoButton_Click(object sender, RoutedEventArgs e)
         {
+            GoCommands();
+        }
+
+        private async void GoCommands()
+        {
+            
             int BreakPosition = Convert.ToInt32(GoTextBox.Text);
             while (commandCounter <= BreakPosition)
             {
                 numberOfCycles = 1;
-                    try
-                    {
-                        this.myCommand = myCommandList.ElementAt(commandCounter);
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("End of Commands");
-                    }
-                    ExecutingCommandTextBlock.Text = this.myCommand;
-                    commandCounter++;
-                    TIMER0.TimerCounter++; //externe Variable für TIMER0 wird hochgezählt
+                try
+                {
+                    this.myCommand = myCommandList.ElementAt(commandCounter);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("End of Commands");
+                }
+                ExecutingCommandTextBlock.Text = this.myCommand;
+                commandCounter++;
 
-                    ExecuteCommand(this.myCommand);
-                    CommandCounterLabel.Content = commandCounter;
+                ExecuteCommand(this.myCommand);
+                CommandCounterLabel.Content = commandCounter;
+
                 if (numberOfCycles == 2)
                 {
                     await Task.Delay(GetFrequenz());
+                    TIMER0.TimerCounter++; //externe Variable für TIMER0 wird hochgezählt
                 }
                 await Task.Delay(GetFrequenz());
-            }
+                TIMER0.TimerCounter++; //externe Variable für TIMER0 wird hochgezählt
+            }      
         }
 
         private int GetFrequenz()

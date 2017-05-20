@@ -14,22 +14,22 @@
         <Label x:Name="mhzLabel" Content="MHz" HorizontalAlignment="Left" Margin="1137,101,0,0" VerticalAlignment="Top" Width="36" FontSize="13.333"/>
         <Label x:Name="laufzLabel" Content="Lauzeit:" HorizontalAlignment="Left" Margin="1040,138,0,0" VerticalAlignment="Top" Width="92" FontSize="13.333"/>
         <TextBox x:Name="laufzBox" HorizontalAlignment="Left" Height="23" Margin="1040,164,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="92" FontSize="13.333"/>
-        <TextBox x:Name="stackBox" HorizontalAlignment="Left" Height="273" Margin="937,385,0,0" TextWrapping="Wrap" Text="Stack" VerticalAlignment="Top" Width="195"/>
-        <Label x:Name="stackLabel" Content="Stackfunktion" HorizontalAlignment="Left" Margin="937,354,0,0" VerticalAlignment="Top" Width="107"/>
-        <StackPanel HorizontalAlignment="Left" Height="38" Margin="799,58,0,0" VerticalAlignment="Top" Width="231" Orientation="Horizontal">
-            <CheckBox x:Name="checkBox0" Content="  "/>
-            <CheckBox x:Name="checkBox1" Content="  "/>
-            <CheckBox x:Name="checkBox2" Content="  "/>
-            <CheckBox x:Name="checkBox3" Content="  "/>
-            <CheckBox x:Name="checkBox4" Content="  "/>
-            <CheckBox x:Name="checkBox5" Content="  "/>
-            <CheckBox x:Name="checkBox6" Content="  "/>
-            <CheckBox x:Name="checkBox7" Content="  "/>
+        <TextBox x:Name="stackBox" HorizontalAlignment="Left" Height="273" Margin="1065,390,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="20"/>
+        <Label x:Name="stackLabel" Content="Stack" HorizontalAlignment="Left" Margin="1065,359,0,0" VerticalAlignment="Top" Width="47"/>
+        <StackPanel HorizontalAlignment="Left" Height="84" Margin="689,57,0,0" VerticalAlignment="Top" Width="343" Orientation="Horizontal">
+            <CheckBox x:Name="RB7" Content="RB7" Margin="0,0,0,61"/>
+            <CheckBox x:Name="RB6" Content="RB6" Margin="0,0,0,61"/>
+            <CheckBox x:Name="RB5" Content="RB5" Margin="0,0,0,61"/>
+            <CheckBox x:Name="RB4" Content="RB4" Margin="0,0,0,61"/>
+            <CheckBox x:Name="RB3" Content="RB3" Margin="0,0,0,61"/>
+            <CheckBox x:Name="RB2" Content="RB2" Margin="0,0,0,61"/>
+            <CheckBox x:Name="RB1" Content="RB1" Margin="0,0,0,61"/>
+            <CheckBox x:Name="RB0" Content="RB0" Margin="0,0,0,61"/>
         </StackPanel>
-        <Label x:Name="latchLabel" Content="Latchfunktion" HorizontalAlignment="Left" Margin="801,31,0,0" VerticalAlignment="Top" Width="125" FontSize="13.333"/>
-        <TextBox x:Name="browseBox" HorizontalAlignment="Left" Height="23" Margin="337,47,0,0" TextWrapping="Wrap" Text="Browse..." VerticalAlignment="Top" Width="218" FontSize="16"/>
-        <Button x:Name="browseButton" Content="Browse" HorizontalAlignment="Left" Margin="555,47,0,0" VerticalAlignment="Top" Width="80" Height="23" Click="browseButton_Click" FontSize="16"/>
-        <FlowDocumentReader x:Name="flowDocReader" HorizontalAlignment="Left" Margin="337,75,0,0" VerticalAlignment="Top" Width="589" Height="451" IsTwoPageViewEnabled="False" IsPrintEnabled="False" IsFindEnabled="True" IsScrollViewEnabled="True"/>
+        <Label x:Name="latchLabel" Content="Latchfunktion" HorizontalAlignment="Left" Margin="689,30,0,0" VerticalAlignment="Top" Width="211" FontSize="13.333"/>
+        <TextBox x:Name="browseBox" HorizontalAlignment="Left" Height="23" Margin="396,46,0,0" TextWrapping="Wrap" Text="Browse..." VerticalAlignment="Top" Width="159" FontSize="16"/>
+        <Button x:Name="browseButton" Content="Browse" HorizontalAlignment="Left" Margin="550,46,0,0" VerticalAlignment="Top" Width="80" Height="23" Click="browseButton_Click" FontSize="16"/>
+        <FlowDocumentReader x:Name="flowDocReader" HorizontalAlignment="Left" Margin="337,75,0,0" VerticalAlignment="Top" Width="624" Height="451" IsTwoPageViewEnabled="False" IsPrintEnabled="False" IsFindEnabled="True" IsScrollViewEnabled="True"/>
         <TextBlock x:Name="ExecutingCommandTextBlock" HorizontalAlignment="Left" Margin="550,573,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="27" Width="131" FontSize="18.667" FontWeight="Bold" Foreground="Red"/>
         <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="380,545,0,0" VerticalAlignment="Top" Width="82" Click="StartButton_Click" Height="23" FontSize="16"/>
         <Button x:Name="nextButton" Content="Next" HorizontalAlignment="Left" Margin="478,545,0,0" VerticalAlignment="Top" Width="77" Click="NextButton_Click" Height="23" FontSize="16"/>

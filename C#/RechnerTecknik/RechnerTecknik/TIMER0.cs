@@ -126,6 +126,11 @@ namespace RechnerTecknik
             if (timerCounter == TimerValue)
             {
                 byte tempTMRO = Registerspeicher.getRegisterWert(Registerspeicher.TMR0);
+                if (MainWindow.numberOfCycles == 2)
+                {
+                    tempTMRO++;
+                    Registerspeicher.setRegisterWert(Registerspeicher.TMR0, tempTMRO);
+                }
                 tempTMRO++;
                 Registerspeicher.setRegisterWert(Registerspeicher.TMR0, tempTMRO);
                 timerCounter = 0;

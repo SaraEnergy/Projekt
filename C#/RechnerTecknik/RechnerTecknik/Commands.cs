@@ -10,6 +10,7 @@ namespace RechnerTecknik
     class Commands
     {
         static MainWindow mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
+        static string stackAsString = string.Empty;
 
         public static void MOVLW(string commandAsString)
         {
@@ -84,7 +85,10 @@ namespace RechnerTecknik
         public static void CALL(string commandAsString)
         {
             Stack.myStack.Push(MainWindow.CommandCounter); // und in Stack für Rücksprungadresse gespeichert
-            mainWin.stackBox.Text = MainWindow.CommandCounter.ToString("X2");
+            stackAsString = MainWindow.CommandCounter.ToString("X2") + stackAsString; 
+
+            mainWin.stackBox.Text = stackAsString;
+
             int myLiteralAsNum = Convert.ToInt32(commandAsString, 16); // string zu int konvertieren
             string binary = Convert.ToString(myLiteralAsNum, 2); // int zu Binärstring konvertieren
             string myLiteralbinary = binary.Substring(3, 11); //Argument, Adresse auslesen
@@ -938,7 +942,15 @@ namespace RechnerTecknik
             Registerspeicher.setRegisterWert(fAsByte, result);
         }
 
+        public static void sleep()
+        {
+            Registerspeicher.speicher[Registerspeicher.STATUS] &= 0xF7;   // PD wird auf 0 gesetzt;
+            Registerspeicher.labels[Registerspeicher.STATUS].Content = Registerspeicher.speicher[Registerspeicher.STATUS].ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
 
+            Registerspeicher.speicher[Registerspeicher.STATUS] |= 0x10;   // TO wird auf 1 gesetzt;
+            Registerspeicher.labels[Registerspeicher.STATUS].Content = Registerspeicher.speicher[Registerspeicher.STATUS].ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
+
+        }
 
 
 
