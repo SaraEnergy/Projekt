@@ -10,15 +10,16 @@ namespace RechnerTecknik
     class TIMER0
     {
         static int TimerValue;
+        static byte tempTMRO = 0;
 
         private static int timerCounter = 0;
         public static int TimerCounter
         {
             get { return timerCounter; }
-            set { timerCounter = value; checkTimer0(); }
+            set { timerCounter = value; CheckTimer0(); }
         }
 
-        public static void checkTimer0()
+        public static void CheckTimer0() //Timerrate wird herausgefunden
         {
             byte InhaltOptionRegister = Registerspeicher.getRegisterWert(0x81);
 
@@ -125,17 +126,33 @@ namespace RechnerTecknik
         {
             if (timerCounter == TimerValue)
             {
-                byte tempTMRO = Registerspeicher.getRegisterWert(Registerspeicher.TMR0);
-                if (MainWindow.numberOfCycles == 2)
-                {
-                    tempTMRO++;
-                    Registerspeicher.setRegisterWert(Registerspeicher.TMR0, tempTMRO);
-                }
-                tempTMRO++;
-                Registerspeicher.setRegisterWert(Registerspeicher.TMR0, tempTMRO);
+                tempTMRO = Registerspeicher.getRegisterWert(Registerspeicher.TMR0);
+                //if (MainWindow.numberOfCycles == 2)
+                //{
+                //   IncreaseTimer();
+                //}
+                IncreaseTimer();
                 timerCounter = 0;
             }
         }
 
+        private static void IncreaseTimer()
+        {
+            if (tempTMRO == 0xFF) //wenn TMRO überläuft wird TOIF gesetzt.
+            {
+                tempTMRO++;
+                Registerspeicher.setRegisterWert(Registerspeicher.TMR0, tempTMRO);
+
+                //intcon wird ausgelesen und im nächsten Schritt mit 0x04 verodert, damit das TOIF (2.Bit) gesetzt wird für Interrupt
+                byte tempINTCON = Registerspeicher.getRegisterWert(Registerspeicher.INTCON); 
+                Registerspeicher.setRegisterWert(Registerspeicher.INTCON, (byte)(tempINTCON | 0x04));
+                Interrupt.CallTimerInterrupt();              
+            }
+            else
+            {
+                tempTMRO++;
+                Registerspeicher.setRegisterWert(Registerspeicher.TMR0, tempTMRO);
+            }
+        }
     }
 }

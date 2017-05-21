@@ -116,7 +116,7 @@ namespace RechnerTecknik
                 ExecutingCommandTextBlock.Text = this.myCommand;
 
                 commandCounter++;
-                TIMER0.TimerCounter++; //externe Variable für TIMER0 wird hochgezählt
+                //TIMER0.TimerCounter++; //externe Variable für TIMER0 wird hochgezählt
 
                 ExecuteCommand(this.myCommand);
                 CommandCounterLabel.Content = commandCounter; //Commandcounter wird ausgegeben
@@ -130,6 +130,7 @@ namespace RechnerTecknik
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
+            numberOfCycles = 1;
             try
             {
                 this.myCommand = myCommandList.ElementAt(commandCounter);
@@ -144,6 +145,11 @@ namespace RechnerTecknik
             TIMER0.TimerCounter++; //externe Variable für TIMER0 wird hochgezählt
 
             ExecuteCommand(this.myCommand);
+
+            if (numberOfCycles == 2)
+            {
+                TIMER0.TimerCounter++;
+            }
             CommandCounterLabel.Content = commandCounter; //Commandcounter wird ausgegeben
         }
 
@@ -163,13 +169,15 @@ namespace RechnerTecknik
             commandCounter = 0;
 
             ExecutingCommandTextBlock.Text = "start over again";
-            CommandNameLabel.Content = "reseted";
+            CommandNameLabel.Content = "";
             CommandCounterLabel.Content = commandCounter;
 
             Registerspeicher.W = 0;
             TIMER0.TimerCounter = 0; //reset, auf null gesetzt
 
-        }
+            laufzeit = 0;
+            laufzBox.Text = Convert.ToString(laufzeit);
+         }
 
         private void GoButton_Click(object sender, RoutedEventArgs e)
         {
@@ -223,6 +231,46 @@ namespace RechnerTecknik
         {
             laufzeit = laufzeit + microSekunden;
             laufzBox.Text = Convert.ToString(laufzeit);
+        }
+
+        private void RB7_Checked(object sender, RoutedEventArgs e)
+        {
+            Latch.Check7BitTrisB();
+        }
+
+        private void RB6_Checked(object sender, RoutedEventArgs e)
+        {
+            Latch.Check6BitTrisB();
+        }
+
+        private void RB5_Checked(object sender, RoutedEventArgs e)
+        {
+            Latch.Check5BitTrisB();
+        }
+
+        private void RB4_Checked(object sender, RoutedEventArgs e)
+        {
+            Latch.Check4BitTrisB();
+        }
+
+        private void RB3_Checked(object sender, RoutedEventArgs e)
+        {
+            Latch.Check3BitTrisB();
+        }
+
+        private void RB2_Checked(object sender, RoutedEventArgs e)
+        {
+            Latch.Check2BitTrisB();
+        }
+
+        private void RB1_Checked(object sender, RoutedEventArgs e)
+        {
+            Latch.Check1BitTrisB();
+        }
+
+        private void RB0_Checked(object sender, RoutedEventArgs e)
+        {
+            Latch.Check0BitTrisB();
         }
     }
 }

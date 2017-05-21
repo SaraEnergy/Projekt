@@ -9,22 +9,22 @@
     <Grid>
 
         <Button x:Name="helpButton" Content="Help" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92" Margin="1040,37,0,0" Click="helpButton_Click" FontSize="13.333"/>
-        <TextBox x:Name="freqBox" HorizontalAlignment="Left" Height="23" Margin="1040,101,0,0" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Width="92" RenderTransformOrigin="0.495,0.457" FontSize="13.333"/>
+        <TextBox x:Name="freqBox" HorizontalAlignment="Left" Height="23" Margin="1040,101,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="92" RenderTransformOrigin="0.495,0.457" FontSize="13.333"/>
         <Label x:Name="freqLabel" Content="Quarzfrequenz:" HorizontalAlignment="Left" Margin="1040,75,0,0" VerticalAlignment="Top" Width="97" FontSize="13.333"/>
         <Label x:Name="mhzLabel" Content="MHz" HorizontalAlignment="Left" Margin="1137,101,0,0" VerticalAlignment="Top" Width="36" FontSize="13.333"/>
         <Label x:Name="laufzLabel" Content="Lauzeit:" HorizontalAlignment="Left" Margin="1040,138,0,0" VerticalAlignment="Top" Width="92" FontSize="13.333"/>
         <TextBox x:Name="laufzBox" HorizontalAlignment="Left" Height="23" Margin="1040,164,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="92" FontSize="13.333"/>
-        <TextBox x:Name="stackBox" HorizontalAlignment="Left" Height="273" Margin="1065,390,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="20"/>
-        <Label x:Name="stackLabel" Content="Stack" HorizontalAlignment="Left" Margin="1065,359,0,0" VerticalAlignment="Top" Width="47"/>
+        <TextBox x:Name="stackBox" HorizontalAlignment="Left" Height="273" Margin="1065,345,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="20"/>
+        <Label x:Name="stackLabel" Content="Stack" HorizontalAlignment="Left" Margin="1065,319,0,0" VerticalAlignment="Top" Width="47"/>
         <StackPanel HorizontalAlignment="Left" Height="84" Margin="689,57,0,0" VerticalAlignment="Top" Width="343" Orientation="Horizontal">
-            <CheckBox x:Name="RB7" Content="RB7" Margin="0,0,0,61"/>
-            <CheckBox x:Name="RB6" Content="RB6" Margin="0,0,0,61"/>
-            <CheckBox x:Name="RB5" Content="RB5" Margin="0,0,0,61"/>
-            <CheckBox x:Name="RB4" Content="RB4" Margin="0,0,0,61"/>
-            <CheckBox x:Name="RB3" Content="RB3" Margin="0,0,0,61"/>
-            <CheckBox x:Name="RB2" Content="RB2" Margin="0,0,0,61"/>
-            <CheckBox x:Name="RB1" Content="RB1" Margin="0,0,0,61"/>
-            <CheckBox x:Name="RB0" Content="RB0" Margin="0,0,0,61"/>
+            <CheckBox x:Name="RB7" Content="RB7" Margin="0,0,0,61" Checked="RB7_Checked" Unchecked="RB7_Checked"/>
+            <CheckBox x:Name="RB6" Content="RB6" Margin="0,0,0,61" Checked="RB6_Checked" Unchecked="RB6_Checked"/>
+            <CheckBox x:Name="RB5" Content="RB5" Margin="0,0,0,61" Checked="RB5_Checked" Unchecked="RB5_Checked"/>
+            <CheckBox x:Name="RB4" Content="RB4" Margin="0,0,0,61" Checked="RB4_Checked" Unchecked="RB4_Checked"/>
+            <CheckBox x:Name="RB3" Content="RB3" Margin="0,0,0,61" Checked="RB3_Checked" Unchecked="RB3_Checked"/>
+            <CheckBox x:Name="RB2" Content="RB2" Margin="0,0,0,61" Checked="RB2_Checked" Unchecked="RB2_Checked"/>
+            <CheckBox x:Name="RB1" Content="RB1" Margin="0,0,0,61" Checked="RB1_Checked" Unchecked="RB1_Checked"/>
+            <CheckBox x:Name="RB0" Content="RB0" Margin="0,0,0,61" Checked="RB0_Checked" Unchecked="RB0_Checked"/>
         </StackPanel>
         <Label x:Name="latchLabel" Content="Latchfunktion" HorizontalAlignment="Left" Margin="689,30,0,0" VerticalAlignment="Top" Width="211" FontSize="13.333"/>
         <TextBox x:Name="browseBox" HorizontalAlignment="Left" Height="23" Margin="396,46,0,0" TextWrapping="Wrap" Text="Browse..." VerticalAlignment="Top" Width="159" FontSize="16"/>
@@ -95,6 +95,9 @@
         <Label x:Name="CounterLabel" Content="CommandCounter" HorizontalAlignment="Left" Margin="380,610,0,0" VerticalAlignment="Top" Width="150" FontSize="16"/>
         <Label x:Name="CommandCounterLabel" Content="" HorizontalAlignment="Left" Margin="544,610,0,0" VerticalAlignment="Top" Height="30" Width="55" FontSize="16" Foreground="#FF00FF03"/>
         <Label x:Name="labelLaufzeitEinheit" Content="μs" HorizontalAlignment="Left" Margin="1137,164,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="interruptLabel" Content="Interrupt" HorizontalAlignment="Left" Margin="1040,677,0,0" VerticalAlignment="Top" Width="78"/>
+        <Label x:Name="InterruptLabel" Content="" HorizontalAlignment="Left" Margin="1040,703,0,0" VerticalAlignment="Top" Width="119" Foreground="Red"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="746" Margin="337,0,0,0" VerticalAlignment="Top" Width="695"/>
 
     </Grid>
 </Window>

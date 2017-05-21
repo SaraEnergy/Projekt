@@ -7,14 +7,19 @@ using System.Windows;
 
 namespace RechnerTecknik
 {
-    class Latch
+    public class Latch
     {
         static MainWindow mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
 
-        static byte inhaltPortB = Registerspeicher.getRegisterWert(Registerspeicher.PORTB); //Inhalt PortB wird vom Speicher geholt
-        static byte inhaltTrisB = Registerspeicher.getRegisterWert(Registerspeicher.speicher[0x86]); //vom Speicher an Stelle 0x86 TRISB Register Wert wird geholt
+        static byte inhaltPortB;
+        static byte inhaltTrisB;
+        public static void LeseTrisBPortBInhalt()
+        {
+           inhaltPortB = Registerspeicher.getRegisterWert(Registerspeicher.PORTB); //Inhalt PortB wird vom Speicher geholt
+           inhaltTrisB = Registerspeicher.getRegisterWert(0x86); //vom Speicher an Stelle 0x86 TRISB Register Wert wird geholt
+        }
 
-        public void PruefTrisB()
+        public static void PruefTrisB()
         {
             Check7BitTrisB();
             Check6BitTrisB();
@@ -26,14 +31,16 @@ namespace RechnerTecknik
             Check0BitTrisB();  
         }
         
-        private void Check7BitTrisB()
+        public static void Check7BitTrisB()
         {
+            LeseTrisBPortBInhalt();
             if ((byte)(inhaltTrisB & 0x80) == 0x80) // 7.Bit steht 1 => INPUT
             {
                 if (mainWin.RB7.IsChecked == true) //wenn RB7 Checkbox einen Hacken hat schreibe 1 an 7.Bit in PortB
                 {
                     Registerspeicher.speicher[Registerspeicher.PORTB] |= 0x80;
                     Registerspeicher.labels[Registerspeicher.PORTB].Content = Registerspeicher.speicher[Registerspeicher.PORTB].ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
+
                 }
                 if (mainWin.RB7.IsChecked == false) //wenn RB7 Checkbox keinen Hacken hat, schreibe 0 an 7.Bit in PortB
                 {
@@ -54,8 +61,9 @@ namespace RechnerTecknik
             }
         }
 
-        private void Check6BitTrisB()
+        public static void Check6BitTrisB()
         {
+            LeseTrisBPortBInhalt();
             if ((byte)(inhaltTrisB & 0x40) == 0x40) // 6.Bit steht 1 => INPUT
             {
                 if (mainWin.RB6.IsChecked == true)
@@ -82,8 +90,9 @@ namespace RechnerTecknik
             }
         }
 
-        private void Check5BitTrisB()
+        public static void Check5BitTrisB()
         {
+            LeseTrisBPortBInhalt();
             if ((byte)(inhaltTrisB & 0x20) == 0x20) // 5.Bit steht 1 => INPUT
             {
                 if (mainWin.RB5.IsChecked == true)
@@ -110,8 +119,9 @@ namespace RechnerTecknik
             }
         }
 
-        private void Check4BitTrisB()
+        public static void Check4BitTrisB()
         {
+            LeseTrisBPortBInhalt();
             if ((byte)(inhaltTrisB & 0x10) == 0x10) // 4.Bit steht 1 => INPUT
             {
                 if (mainWin.RB4.IsChecked == true)
@@ -138,8 +148,9 @@ namespace RechnerTecknik
             }
         }
 
-        private void Check3BitTrisB()
+        public static void Check3BitTrisB()
         {
+            LeseTrisBPortBInhalt();
             if ((byte)(inhaltTrisB & 0x08) == 0x08) // 3.Bit steht 1 => INPUT
             {
                 if (mainWin.RB3.IsChecked == true)
@@ -166,8 +177,9 @@ namespace RechnerTecknik
             }
         }
 
-        private void Check2BitTrisB()
+        public static void Check2BitTrisB()
         {
+            LeseTrisBPortBInhalt();
             if ((byte)(inhaltTrisB & 0x04) == 0x04) // 2.Bit steht 1 => INPUT
             {
                 if (mainWin.RB2.IsChecked == true)
@@ -194,8 +206,9 @@ namespace RechnerTecknik
             }
         }
 
-        private void Check1BitTrisB()
+        public static void Check1BitTrisB()
         {
+            LeseTrisBPortBInhalt();
             if ((byte)(inhaltTrisB & 0x02) == 0x02) // 1.Bit steht 1 => INPUT
             {
                 if (mainWin.RB1.IsChecked == true)
@@ -222,8 +235,9 @@ namespace RechnerTecknik
             }
         }
 
-        private void Check0BitTrisB()
+        public static void Check0BitTrisB()
         {
+            LeseTrisBPortBInhalt();
             if ((byte)(inhaltTrisB & 0x01) == 0x01) // 0.Bit steht 1 => INPUT
             {
                 if (mainWin.RB0.IsChecked == true)

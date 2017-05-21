@@ -10,7 +10,7 @@ namespace RechnerTecknik
     class Commands
     {
         static MainWindow mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
-        static string stackAsString = string.Empty;
+        public static string stackAsString = string.Empty;
 
         public static void MOVLW(string commandAsString)
         {
@@ -781,7 +781,6 @@ namespace RechnerTecknik
             byte fWert = Registerspeicher.getRegisterWert(fAsByte);
 
             int bAsInt = Convert.ToInt32(bLiteralbinary, 2); //B-binär wird als Int gespeichert
-            byte result = 0;
 
             if (bAsInt == 0)
             {
@@ -851,7 +850,6 @@ namespace RechnerTecknik
             {
                 MessageBox.Show("Problem BTFSC - b is not defined");
             }
-            Registerspeicher.setRegisterWert(fAsByte, result);
         }
 
         public static void BTFSS(string commandAsString)
@@ -869,7 +867,6 @@ namespace RechnerTecknik
             byte fWert = Registerspeicher.getRegisterWert(fAsByte);
 
             int bAsInt = Convert.ToInt32(bLiteralbinary, 2); //B-binär wird als Int gespeichert
-            byte result = 0;
 
             if (bAsInt == 0)
             {
@@ -939,7 +936,6 @@ namespace RechnerTecknik
             {
                 MessageBox.Show("Problem BTFSS - b is not defined");
             }
-            Registerspeicher.setRegisterWert(fAsByte, result);
         }
 
         public static void sleep()

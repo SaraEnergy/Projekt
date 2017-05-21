@@ -133,44 +133,98 @@ namespace RechnerTecknik
             }
         }
 
-        //private static void SwitchBanks(byte address, byte value)
-        //{
-        //    //Prüfen ob geswitched werden muss
-        //    switch (address)
-        //    {
-        //        // Bank0 addressiert: auf Bank1 uebertragen
-        //        case PCL:
-        //        case STATUS:
-        //        case FSR:
-        //        case PCLATH:
-        //        case INTCON:
-        //            speicher[address + 0x80] = value;
-        //            labels[address + 0x80].Content = value.ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
-        //            break;
-        //        // Bank1 addressiert: auf Bank0 uebertragen
-        //        case PCL + 0x80:
-        //        case STATUS + 0x80:
-        //        case FSR + 0x80:
-        //        case PCLATH + 0x80:
-        //        case INTCON + 0x80:
-        //            speicher[address - 0x80] = value;
-        //            labels[address - 0x80].Content = value.ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
-        //            break;
-        //        // default
-        //        default:
-        //            break;
-        //    }
-        //}
-
         public static void setRegisterWert(byte address, byte value)
         {
-            //CheckBanks(address, value);
+            byte altOptionRegister = getRegisterWert(0x81); //OptionRegister wird wegen INTEDG ausgelesen
+            byte altPortBRegister = getRegisterWert(PORTB); //PortBRegister wird wegen interrupt ausgelesen
             WriteToBank(address, value);
             CopyBanks();
-            //SwitchBanks(address, value);
+            CheckIfRBOInterrupt(altOptionRegister);
+            CheckIfRB47Interrupt(altPortBRegister);
         }
 
-        public static void setRegisterBCF(byte address, byte value)
+        private static void CheckIfRB47Interrupt(byte altPortBRegister)
+        {
+            byte neuPortBRegister = getRegisterWert(PORTB); //neuer PortBRegisterWert wird ausgelesen um RB4 - RB7 auf Veränderung zu prüfen
+            string altPortBRegisterAsString = Convert.ToString(altPortBRegister);
+            string neuPortBRegisterAsString = Convert.ToString(neuPortBRegister);
+            if ((byte)(getRegisterWert(0x86) & 0x80) == 0x80) // 7.Bit steht 1 => INPUT
+            {  try
+                {
+                    string altRB7 = altPortBRegisterAsString.Substring(0, 1);
+                    string neuRB7 = neuPortBRegisterAsString.Substring(0, 1);
+                    SetRB47Interrupt(altRB7, neuRB7);
+                }
+                catch (Exception){}
+            }
+            if ((byte)(getRegisterWert(0x86) & 0x40) == 0x40) // 6.Bit steht 1 => INPUT
+            {
+                try
+                {
+                    string altRB6 = altPortBRegisterAsString.Substring(1, 1);
+                    string neuRB6 = neuPortBRegisterAsString.Substring(1, 1);
+                    SetRB47Interrupt(altRB6, neuRB6);
+                }
+                catch (Exception) { }
+            }
+            if ((byte)(getRegisterWert(0x86) & 0x20) == 0x20) // 5.Bit steht 1 => INPUT
+            {
+                try
+                {
+                    string altRB5 = altPortBRegisterAsString.Substring(2, 1);
+                    string neuRB5 = neuPortBRegisterAsString.Substring(2, 1);
+                    SetRB47Interrupt(altRB5, neuRB5);
+                }
+                catch (Exception) { }
+            }
+            if ((byte)(getRegisterWert(0x86) & 0x10) == 0x10) // 4.Bit steht 1 => INPUT
+            {
+                try
+                {
+                    string altRB4 = altPortBRegisterAsString.Substring(3, 1);
+                    string neuRB4 = neuPortBRegisterAsString.Substring(3, 1);
+                    SetRB47Interrupt(altRB4, neuRB4);
+                }
+                catch (Exception) { }
+            }
+        }
+
+        private static void SetRB47Interrupt(string altRB, string neuRB)
+        {
+            if (altRB != neuRB)
+            {
+                byte tempINTCON = getRegisterWert(INTCON);
+                WriteToBank(PORTB, (byte)(tempINTCON | 0x01));
+                CopyBanks();
+                Interrupt.CallRB47Interrupt();
+            }
+        }
+
+        private static void CheckIfRBOInterrupt(byte altOptionRegister)
+        {
+            byte neuOptionRegister = getRegisterWert(0x81); //neuer OptionRegisterWert wird ausgelesen um INTEDG auf Veränderung zu prüfen
+            string altOptionRegisterAsString = Convert.ToString(altOptionRegister);
+            string neuOptionRegisterAsString = Convert.ToString(neuOptionRegister);
+            try
+            {
+                string altINTEDG = altOptionRegisterAsString.Substring(1, 1);
+                string neuINTEDG = neuOptionRegisterAsString.Substring(1, 1);
+                if (altINTEDG != neuINTEDG)
+                {
+                    byte tempPortB = getRegisterWert(PORTB);
+                    WriteToBank(PORTB, (byte)(tempPortB | 0x01));
+                    CopyBanks();
+                    Interrupt.CallRB0Interrupt();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            
+        }
+
+        public static void setRegisterBCF(byte address, byte value) // damit werte in beide Bänke geschrieben werden
         {
             speicher[address + 0x80] = value;
             labels[address + 0x80].Content = value.ToString("X2"); //X2 prints the string as two uppercase hexadecimal characters
@@ -230,141 +284,7 @@ namespace RechnerTecknik
             return (speicher[address] & (byte)Math.Pow(2, bit)) != 0;
         }
 
-        //public static byte toogleBit(byte addr, byte bit)
-        //{
-        //    byte pow = (byte)Math.Pow(2, bit);
-        //    if ((speicher[addr] & pow) == pow) // bit ist gesetzt
-        //    {
-        //        Console.WriteLine("Bit war gesetzt");
-        //        speicher[addr] &= (byte)(0xff - pow);
-        //        byte value = speicher[addr];
-        //        labels[addr].Content = value.ToString("X2");
-        //        CheckSwitchBanks(addr, value);
-        //        return 0;
-        //    }
-        //    else // bit ist nicht gesetzt
-        //    {
-        //        Console.WriteLine("Bit war nicht gesetzt");
-        //        speicher[addr] |= pow;
-        //        byte value = speicher[addr];
-        //        labels[addr].Content = value.ToString("X2");
-        //        CheckSwitchBanks(addr, value);
-        //        return 1;
-        //    }
-        //}
-
-        //public static void setIndirect(byte indirct)
-        //{
-        //    set(indirect, indirct);
-        //}
-
-        //public static byte getIndirect()
-        //{
-        //    return speicher[indirect];
-        //}
-
-        //public static void setTMR0(byte tmr0)
-        //{
-        //    set(TMR0, tmr0);
-        //}
-
-        //public static byte getTMR0()
-        //{
-        //    return speicher[TMR0];
-        //}
-
-        //public static void setPCL(byte pcl)
-        //{
-        //    set(PCL, pcl);
-        //}
-
-        //public static byte getPCL()
-        //{
-        //    return speicher[PCL];
-        //}
-
-        //public static void setStatus(byte status)
-        //{
-        //    set(STATUS, status);
-        //}
-
-        //public static byte getStatus()
-        //{
-        //    return speicher[STATUS];
-        //}
-
-        //public static void setFSR(byte fsr)
-        //{
-        //    set(FSR, fsr);
-        //}
-
-        //public static byte getFSR()
-        //{
-        //    return speicher[FSR];
-        //}
-
-        //public static void setPortA(byte PortA)
-        //{
-        //    set(PORTA, PortA);
-        //}
-
-        //public static byte getPortA()
-        //{
-        //    return speicher[PORTA];
-        //}
-
-        //public static void setPortB(byte PortB)
-        //{
-        //    set(PORTB, PortB);
-        //}
-
-        //public static byte getPortB()
-        //{
-        //    return speicher[PORTB];
-        //}
-
-        //public static void setEEDATA(byte eedata)
-        //{
-        //    set(EEDATA, eedata);
-        //}
-
-        //public static byte getEEDATA()
-        //{
-        //    return speicher[EEDATA];
-        //}
-
-        //public static void setEEADR(byte eeadr)
-        //{
-        //    set(EEADR, eeadr);
-        //}
-
-        //public static byte getEEADR()
-        //{
-        //    return speicher[EEADR];
-        //}
-
-        //public static void setPCLATH(byte pclath)
-        //{
-        //    set(PCLATH, pclath);
-        //}
-
-        //public static byte getPCLATH()
-        //{
-        //    return speicher[PCLATH];
-        //}
-
-        //public static void setIntcont(byte intcon)
-        //{
-        //    set(INTCON, intcon);
-        //}
-
-        //public static byte getIntcont()
-        //{
-        //    return speicher[INTCON];
-        //}
-
-
-
+    
     }
 }
 
